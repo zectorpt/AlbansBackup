@@ -33,9 +33,15 @@ exit 0
 }
 
 restoreuntil () {
-ls -ltr $BACKUPDESTINATION/back_$REFERENCE* > /tmp/albansbackup.tmp
+ls -ltr $BACKUPDESTINATION/back_$REFERENCE* | awk '{print $5,"\t",$6,"\t",$7,"\t",$8,"\t",$9}' > /tmp/albansbackup.tmp
+cp /tmp/albansbackup.tmp /tmp/albansbackup.tmp.1
 
+awk '$0=((NR-1)?NR-0:"1")"      "$0' /tmp/albansbackup.tmp.1 > /tmp/albansbackup.tmp
+echo "Index\tSize\t\tTimestamp\t\t\tFilename\n$(cat /tmp/albansbackup.tmp)" > /tmp/albansbackup.tmp
+echo "Select the Index file until you want to restore.\n"
+cat /tmp/albansbackup.tmp
 
+#Need to add a way to select the last day to restore
 exit 0
 }
  

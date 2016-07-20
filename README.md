@@ -1,7 +1,6 @@
 ##Welcome to Albans BAckup System!
 
-How to install it?
-
+UNDER DEV
 
 
 -----------------------------------------------------------------------------
