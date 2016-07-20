@@ -31,6 +31,13 @@ sleep 1
 rm -f /tmp/albansbackup.tmp
 exit 0
 }
+
+restoreuntil () {
+ls -ltr $BACKUPDESTINATION/back_$REFERENCE* > /tmp/albansbackup.tmp
+
+
+exit 0
+}
  
 while :
 do
@@ -39,6 +46,7 @@ echo "* Albans Backup System *"
 echo "************************"
 echo "* [b] Backup 	     *"
 echo "* [r] Restore	     *"
+echo "* [u] Restore Until    *"
 echo "* [q] Exit 	     *"
 echo "************************"
 echo -n "Select: "
@@ -46,6 +54,7 @@ read yourch
 case $yourch in
 b) backup ;;
 r) restore ;;
+u) restoreuntil ;;
 q) exit 0;;
 *) echo "Menu: ";
 echo "Press Enter to continue. . ." ; read ;;
