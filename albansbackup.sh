@@ -105,7 +105,7 @@ echo "* [c] Config System    *"
 echo "* [b] Backup 	     *"
 echo "* [r] Restore	     *"
 echo "* [u] Restore Until    *"
-echo "* [q] Exit 	     *"
+echo "* [x] Exit 	     *"
 echo "************************"
 echo -n "Select: "
 read yourch
@@ -114,7 +114,7 @@ c) config ;;
 b) backup ;;
 r) restore ;;
 u) restoreuntil ;;
-q) exit 0;;
+x) exit 0;;
 *) echo "Menu: ";
 echo "Press Enter to continue. . ." ; read ;;
 esac
