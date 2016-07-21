@@ -8,11 +8,21 @@
 # josemedeirosdealmeida@gmail.com
 # Jose Almeida
 
-DIRTOBACKUP=/var/log			# Folder to backup
-BACKUPDESTINATION=/mnt/aaaa		# Storage path
-SNAPSHOTFILE=snap.db			# This file can be changed, but cannot be deleted
-REFERENCE=mydata			# This reference name will be used to create the file name, can be changed to another one
-DIRTORESTORE=/mnt/restore		# Folder to restore our tar files
+#Load Variables
+source albans.conf
+
+config () {
+summary
+#echo "The folder configured to backup is $DIRTOBACKUP press [ENTER] to continue without changes or insert a new folder"
+read -p "The folder configured to backup is $DIRTOBACKUP press [ENTER] to continue without changes or insert a new folder: " DIRTOBACKUPnew
+if [ $DIRTOBACKUP == $DIRTOBACKUPnew ]
+then
+  echo "No changes"
+else
+  echo "Will change to $DIRTOBACKUPnew"
+fi
+exit 0
+}
 
 backup () {
 summary
@@ -91,6 +101,7 @@ do
 echo "************************"
 echo "* Albans Backup System *"
 echo "************************"
+echo "* [c] Config System    *"
 echo "* [b] Backup 	     *"
 echo "* [r] Restore	     *"
 echo "* [u] Restore Until    *"
@@ -99,6 +110,7 @@ echo "************************"
 echo -n "Select: "
 read yourch
 case $yourch in
+c) config ;;
 b) backup ;;
 r) restore ;;
 u) restoreuntil ;;
