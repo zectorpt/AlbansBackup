@@ -15,26 +15,32 @@ REFERENCE=mydata			# This reference name will be used to create the file name, c
 DIRTORESTORE=/mnt/restore		# Folder to restore our tar files
 
 backup () {
+summary
 echo "This will backup your $DIRTOBACKUP folder using as snapshot file $BACKUPDESTINATION/$SNAPSHOTFILE. You can run the script several times."
 echo -e '\n\n'
 mkdir -p $BACKUPDESTINATION
-tar --create --file=$BACKUPDESTINATION/back_$(echo $REFERENCE)_$(date +\%Y\%m\%d_\%H\%M\%S).tar --listed-incremental=$BACKUPDESTINATION/$SNAPSHOTFILE $DIRTOBACKUP
-exit 0
+tar -v --create --file=$BACKUPDESTINATION/back_$(echo $REFERENCE)_$(date +\%Y\%m\%d_\%H\%M\%S).tar --listed-incremental=$BACKUPDESTINATION/$SNAPSHOTFILE $DIRTOBACKUP
+read -p "Press [Enter] key to continue..."
+menu
 }
 
 restore () {
+summary
+echo "All files will be restored to: $DIRTORESTORE"
 mkdir -p $DIRTORESTORE
 ls -ltr $BACKUPDESTINATION/back_$REFERENCE* | awk '{print $9}' > /tmp/albansbackup.tmp
 sleep 1
   while read line; do
-        tar --extract --listed-incremental=$BACKUPDESTINATION/$SNAPSHOTFILE --file $line -C $DIRTORESTORE
+        tar -v --extract --listed-incremental=$BACKUPDESTINATION/$SNAPSHOTFILE --file $line -C $DIRTORESTORE
   done < /tmp/albansbackup.tmp
 rm -f /tmp/albansbackup.tmp
-exit 0
+read -p "Press [Enter] key to continue..."
+menu
 }
 
 restoreuntil () {
 summary
+echo "All files will be restored to: $DIRTORESTORE"
 ls -ltr $BACKUPDESTINATION/back_$REFERENCE* | awk '{print $5,"\t\t",$6,"\t\t",$7,"\t",$8,"\t",$9}' > /tmp/albansbackup.tmp
 cp /tmp/albansbackup.tmp /tmp/albansbackup.tmp.1
 echo -e 'Index\tSize\t\tTimestamp\t\t\tFilename' > /tmp/albansbackup.tmp
@@ -55,10 +61,11 @@ cat /tmp/albansbackup.tmp.1 | awk '{print $5}' | head -n $index > /tmp/albansbac
 mkdir -p $DIRTORESTORE
 sleep 1
   while read line; do
-        tar --extract --listed-incremental=$BACKUPDESTINATION/$SNAPSHOTFILE --file $line -C $DIRTORESTORE
+        tar -v --extract --listed-incremental=$BACKUPDESTINATION/$SNAPSHOTFILE --file $line -C $DIRTORESTORE
   done < /tmp/albansbackup.tmp.until
 rm -f /tmp/albansbackup.tm*
-exit 0
+read -p "Press [Enter] key to continue..."
+menu
 }
 
 findcontent () {
@@ -70,14 +77,15 @@ exit 0
 }
 
 summary () {
+clear
 echo "************************"
 echo "* Albans Backup System *"
 echo "************************"
 echo -e '\n'
-echo "All files will be restored to: $DIRTORESTORE"
-echo -e '\n'
 }
- 
+
+menu () { 
+clear
 while :
 do
 echo "************************"
@@ -99,3 +107,6 @@ q) exit 0;;
 echo "Press Enter to continue. . ." ; read ;;
 esac
 done
+}
+
+menu
