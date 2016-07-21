@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 #
 # This script will backup and restore folders using the incremental option of TAR
 # You don't need to create a full backup each time
@@ -11,7 +11,7 @@
 DIRTOBACKUP=/var/log			# Folder to backup
 BACKUPDESTINATION=/mnt/aaaa		# Storage path
 SNAPSHOTFILE=snap.db			# This file can be changed, but cannot be deleted
-REFERENCE=mydata			# This reference name will be used to create the file name, can be changed to another word
+REFERENCE=mydata			# This reference name will be used to create the file name, can be changed to another one
 DIRTORESTORE=/mnt/restore		# Folder to restore our tar files
 
 backup () {
@@ -33,15 +33,32 @@ exit 0
 }
 
 restoreuntil () {
-ls -ltr $BACKUPDESTINATION/back_$REFERENCE* | awk '{print $5,"\t",$6,"\t",$7,"\t",$8,"\t",$9}' > /tmp/albansbackup.tmp
+ls -ltr $BACKUPDESTINATION/back_$REFERENCE* | awk '{print $5,"\t\t",$6,"\t\t",$7,"\t",$8,"\t",$9}' > /tmp/albansbackup.tmp
 cp /tmp/albansbackup.tmp /tmp/albansbackup.tmp.1
-
-awk '$0=((NR-1)?NR-0:"1")"      "$0' /tmp/albansbackup.tmp.1 > /tmp/albansbackup.tmp
-echo "Index\tSize\t\tTimestamp\t\t\tFilename\n$(cat /tmp/albansbackup.tmp)" > /tmp/albansbackup.tmp
-echo "Select the Index file until you want to restore.\n"
+echo -e 'Index\tSize\t\tTimestamp\t\t\tFilename' > /tmp/albansbackup.tmp
+awk '$0=((NR-1)?NR-0:"1")"      "$0' /tmp/albansbackup.tmp.1 >> /tmp/albansbackup.tmp
 cat /tmp/albansbackup.tmp
+echo -e '\n'
+read -p "Select the Index file until you want to restore (included): " index
+echo $index
+
+#Convert the file in array
+declare -a myarray
+readarray myarray < /tmp/albansbackup.tmp
+echo ${myarray[index]}
+
+
 
 #Need to add a way to select the last day to restore
+#Need to delete tmp files
+exit 0
+}
+
+findcontent () {
+exit 0
+}
+
+listdiferences () {
 exit 0
 }
  
