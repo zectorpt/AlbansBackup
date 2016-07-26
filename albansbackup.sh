@@ -57,7 +57,7 @@ echo -e 'Index\tSize\t\tTimestamp\t\t\tFilename' > /tmp/albansbackup.tmp
 awk '$0=((NR-1)?NR-0:"1")"      "$0' /tmp/albansbackup.tmp.1 >> /tmp/albansbackup.tmp
 cat /tmp/albansbackup.tmp
 echo -e '\n'
-read -p "Select the Index file until you want to restore (included) or press 0 to exit: " index
+read -p "Select the Index file until you want to restore (included) or press ctrl+c to exit: " index
 #Check if is integer
 if ! [ "$index" -eq "$index" ] 2> /dev/null
 then
