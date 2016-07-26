@@ -14,14 +14,14 @@ source albans.conf
 config () {
 summary
 #echo "The folder configured to backup is $DIRTOBACKUP press [ENTER] to continue without changes or insert a new folder"
-read -p "The folder configured to backup is $DIRTOBACKUP press [ENTER] to continue without changes or insert a new folder: " DIRTOBACKUPnew
-if [ $DIRTOBACKUP == $DIRTOBACKUPnew ]
-then
-  echo "No changes"
-else
-  echo "Will change to $DIRTOBACKUPnew"
-fi
-exit 0
+echo "Folder to backup  $DIRTOBACKUP"
+echo "Folder to store your backup $BACKUPDESTINATION"
+echo "Snapshot file: $SNAPSHOTFILE"
+echo "Name to be used by system as a reference: $REFERENCE"
+echo "Folder that will be used to restore everything: $DIRTORESTORE"
+echo -e '\n\n'
+read -p "Press [Enter] key to continue..."
+menu
 }
 
 backup () {
