@@ -74,7 +74,7 @@ rm -f /tmp/albansbackup.tm* #Activate to clean logs
 read -p "Press [Enter] key to continue..."
 menu
 else
-menu
+restoreuntil
 fi
 }
 
