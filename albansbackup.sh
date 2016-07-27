@@ -79,10 +79,12 @@ fi
 }
 
 findcontent () {
+#Not ready yet
 exit 0
 }
 
 listdiferences () {
+#Not ready yet
 exit 0
 }
 
@@ -120,5 +122,4 @@ echo "Press Enter to continue. . ." ; read ;;
 esac
 done
 }
-
 menu
