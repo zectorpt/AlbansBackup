@@ -57,25 +57,25 @@ echo -e 'Index\tSize\t\tTimestamp\t\t\tFilename' > /tmp/albansbackup.tmp
 awk '$0=((NR-1)?NR-0:"1")"      "$0' /tmp/albansbackup.tmp.1 >> /tmp/albansbackup.tmp
 cat /tmp/albansbackup.tmp
 echo -e '\n'
-read -p "Select the Index file until you want to restore (included) or press ENTER to exit: " index
-#Check if the variable index is lesser or equal than the number of lines of /tmp/albansbackup.tmp.1
-if [ $index -le "$(wc -l /tmp/albansbackup.tmp.1|awk {'print $1'})" ];
+read -p "Select the Index file until you want to restore (included) or press ctrl+c to exit: " index
+#Check if is integer
+if ! [ "$index" -eq "$index" ] 2> /dev/null
 then
-    sleep 1
-echo -e 'Building the list of files to restore\n'
-sleep 2
+    echo "Select a value from Index"
+    sleep 3
+    clear
+    restoreuntil
+fi
+#Build the list of files to restore
 cat /tmp/albansbackup.tmp.1 | awk '{print $5}' | head -n $index > /tmp/albansbackup.tmp.until
 mkdir -p $DIRTORESTORE
 sleep 1
   while read line; do
         tar -v --extract --listed-incremental=$BACKUPDESTINATION/$SNAPSHOTFILE --file $line -C $DIRTORESTORE
   done < /tmp/albansbackup.tmp.until
-rm -f /tmp/albansbackup.tm* #Activate to clean logs
+rm -f /tmp/albansbackup.tm*
 read -p "Press [Enter] key to continue..."
 menu
-else
-menu
-fi
 }
 
 findcontent () {
