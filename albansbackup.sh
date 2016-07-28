@@ -12,9 +12,56 @@
 source albans.conf
 
 config () {
+source albans.conf
 summary
 #echo "The folder configured to backup is $DIRTOBACKUP press [ENTER] to continue without changes or insert a new folder"
-echo "Folder to backup  $DIRTOBACKUP"
+echo -e 'Insert a new configuration information or press [ENTER] to continue without changes\n'
+echo -e '\n\n'
+
+read -p "Folder to backup is $DIRTOBACKUP define a new one or press ENTER to continue: " DIRTOBACKUPNEW
+if [ "$DIRTOBACKUPNEW" == "" ] ; then
+  echo > /dev/null #Just proceed please...
+else
+  sed -i "/DIRTOBACKUP/c \DIRTOBACKUP=$DIRTOBACKUPNEW" albans.conf
+fi
+
+read -p "Folder to store your backup is $BACKUPDESTINATION define a new one or press ENTER to continue: " BACKUPDESTINATIONNEW
+if [ "$BACKUPDESTINATIONNEW" == "" ] ; then
+  echo > /dev/null #Just proceed please...
+else
+  sed -i "/BACKUPDESTINATION/c \BACKUPDESTINATION=$BACKUPDESTINATIONNEW" albans.conf
+fi
+
+read -p "Snapshot file is $SNAPSHOTFILE define a new one or press ENTER to continue: " SNAPSHOTFILENEW
+if [ "$SNAPSHOTFILENEW" == "" ] ; then
+  echo > /dev/null #Just proceed please...
+else
+  sed -i "/SNAPSHOTFILE/c \SNAPSHOTFILE=$SNAPSHOTFILENEW" albans.conf
+fi
+
+read -p "Name to be used by system as a reference is $REFERENCE define a new one or press ENTER to continue: " REFERENCENEW
+if [ "$REFERENCENEW" == "" ] ; then
+  echo > /dev/null #Just proceed please...
+else
+  sed -i "/REFERENCE/c \REFERENCE=$REFERENCENEW" albans.conf
+fi
+
+read -p "Folder that will be used to restore everything is $DIRTORESTORE define a new one or press ENTER to continue: " DIRTORESTORENEW
+if [ "$DIRTORESTORENEW" == "" ] ; then
+  echo > /dev/null #Just proceed please...
+else
+  sed -i "/DIRTORESTORE/c \DIRTORESTORE=$DIRTORESTORENEW" albans.conf
+fi
+
+read -p "Press [Enter] key to continue..."
+menu
+
+}
+
+showvars () {
+source albans.conf
+summary
+echo "The folder configured to backup is $DIRTOBACKUP"
 echo "Folder to store your backup $BACKUPDESTINATION"
 echo "Snapshot file: $SNAPSHOTFILE"
 echo "Name to be used by system as a reference: $REFERENCE"
@@ -93,26 +140,27 @@ clear
 echo "************************"
 echo "* Albans Backup System *"
 echo "************************"
-echo -e '\n'
 }
 
 menu () { 
 clear
 while :
 do
-echo "************************"
-echo "* Albans Backup System *"
-echo "************************"
-echo "* [c] Config System    *"
-echo "* [b] Backup 	     *"
-echo "* [r] Restore	     *"
-echo "* [u] Restore Until    *"
-echo "* [x] Exit 	     *"
-echo "************************"
+echo "***************************"
+echo "* Albans Backup System    *"
+echo "***************************"
+echo "* [c] Config System       *"
+echo "* [s] Show configuration  *"
+echo "* [b] Backup 	        *"
+echo "* [r] Restore	        *"
+echo "* [u] Restore Until       *"
+echo "* [x] Exit 	        *"
+echo "***************************"
 echo -n "Select: "
 read yourch
 case $yourch in
 c) config ;;
+s) showvars ;;
 b) backup ;;
 r) restore ;;
 u) restoreuntil ;;
@@ -122,4 +170,5 @@ echo "Press Enter to continue. . ." ; read ;;
 esac
 done
 }
+
 menu
