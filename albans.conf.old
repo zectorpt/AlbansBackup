@@ -1,5 +1,0 @@
-DIRTOBACKUP=/var/log
-BACKUPDESTINATION=/mnt/aaaa             # Storage path
-SNAPSHOTFILE=snap.db                    # This file can be changed, but cannot be deleted
-REFERENCE=mydata                        # This reference name will be used to create the file name, can be changed to another one
-DIRTORESTORE=/mnt/restore               # Folder to restore our tar files. Can be a TAPE, or network file.

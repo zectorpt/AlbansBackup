@@ -22,35 +22,35 @@ read -p "Folder to backup is $DIRTOBACKUP define a new one or press ENTER to con
 if [ "$DIRTOBACKUPNEW" == "" ] ; then
   echo > /dev/null #Just proceed please...
 else
-  sed -i "/DIRTOBACKUP/c \DIRTOBACKUP=$DIRTOBACKUPNEW" albans.conf
+  sed -i "/DIRTOBACKUP/c \DIRTOBACKUP=$DIRTOBACKUPNEW			# Folder to backup" albans.conf
 fi
 
 read -p "Folder to store your backup is $BACKUPDESTINATION define a new one or press ENTER to continue: " BACKUPDESTINATIONNEW
 if [ "$BACKUPDESTINATIONNEW" == "" ] ; then
   echo > /dev/null #Just proceed please...
 else
-  sed -i "/BACKUPDESTINATION/c \BACKUPDESTINATION=$BACKUPDESTINATIONNEW" albans.conf
+  sed -i "/BACKUPDESTINATION/c \BACKUPDESTINATION=$BACKUPDESTINATIONNEW		# Storage path" albans.conf
 fi
 
 read -p "Snapshot file is $SNAPSHOTFILE define a new one or press ENTER to continue: " SNAPSHOTFILENEW
 if [ "$SNAPSHOTFILENEW" == "" ] ; then
   echo > /dev/null #Just proceed please...
 else
-  sed -i "/SNAPSHOTFILE/c \SNAPSHOTFILE=$SNAPSHOTFILENEW" albans.conf
+  sed -i "/SNAPSHOTFILE/c \SNAPSHOTFILE=$SNAPSHOTFILENEW			# This file can be changed, but cannot be deleted" albans.conf
 fi
 
 read -p "Name to be used by system as a reference is $REFERENCE define a new one or press ENTER to continue: " REFERENCENEW
 if [ "$REFERENCENEW" == "" ] ; then
   echo > /dev/null #Just proceed please...
 else
-  sed -i "/REFERENCE/c \REFERENCE=$REFERENCENEW" albans.conf
+  sed -i "/REFERENCE/c \REFERENCE=$REFERENCENEW			# This reference name will be used to create the file name, can be changed to another one" albans.conf
 fi
 
 read -p "Folder that will be used to restore everything is $DIRTORESTORE define a new one or press ENTER to continue: " DIRTORESTORENEW
 if [ "$DIRTORESTORENEW" == "" ] ; then
   echo > /dev/null #Just proceed please...
 else
-  sed -i "/DIRTORESTORE/c \DIRTORESTORE=$DIRTORESTORENEW" albans.conf
+  sed -i "/DIRTORESTORE/c \DIRTORESTORE=$DIRTORESTORENEW			# Folder to restore our tar files. Can be a TAPE, or network file" albans.conf
 fi
 
 read -p "Press [Enter] key to continue..."
