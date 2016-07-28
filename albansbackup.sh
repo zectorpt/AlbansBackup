@@ -83,7 +83,10 @@ menu
 
 restore () {
 summary
+read -p "Do you want to continue restore your backup to $DIRTORESTORE (Y/n)? " choseyorno
+if [ "$choseyorno" == "Y" ] ; then
 echo "All files will be restored to: $DIRTORESTORE"
+sleep 2
 mkdir -p $DIRTORESTORE
 ls -ltr $BACKUPDESTINATION/back_$REFERENCE* | awk '{print $9}' > /tmp/albansbackup.tmp
 sleep 1
@@ -91,7 +94,11 @@ sleep 1
         tar -v --extract --listed-incremental=$BACKUPDESTINATION/$SNAPSHOTFILE --file $line -C $DIRTORESTORE
   done < /tmp/albansbackup.tmp
 rm -f /tmp/albansbackup.tmp
+echo -e '\nEverything restored!\n'
 read -p "Press [Enter] key to continue..."
+else
+ menu 
+fi
 menu
 }
 
@@ -168,6 +175,7 @@ x) exit 0;;
 *) echo "Menu: ";
 echo "Press Enter to continue. . ." ; read ;;
 esac
+menu
 done
 }
 
