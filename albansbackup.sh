@@ -71,6 +71,7 @@ menu
 }
 
 backup () {
+source albans.conf
 summary
 echo "This will backup your $DIRTOBACKUP folder using as snapshot file $BACKUPDESTINATION/$SNAPSHOTFILE. You can run the script several times."
 echo -e '\n\n'
@@ -81,6 +82,7 @@ menu
 }
 
 restore () {
+source albans.conf
 summary
 read -p "Do you want to continue restore your backup to $DIRTORESTORE (Y/n)? " choseyorno
 if [ "$choseyorno" == "Y" ] ; then
@@ -102,6 +104,7 @@ menu
 }
 
 restoreuntil () {
+source albans.conf
 summary
 echo "All files will be restored to: $DIRTORESTORE"
 ls -ltr $BACKUPDESTINATION/back_$REFERENCE* | awk '{print $5,"\t\t",$6,"\t\t",$7,"\t",$8,"\t",$9}' > /tmp/albansbackup.tmp
