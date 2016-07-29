@@ -138,6 +138,7 @@ exit 0
 
 listdiferences () {
 #Not ready yet
+#Base to work diff <(tar -tvf /mnt/aaaa/back_tadata_20160729_085423.tar | sort) <(tar -tvf /mnt/aaaa/back_tadata_20160729_090239.tar | sort)
 exit 0
 }
 
