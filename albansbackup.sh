@@ -15,8 +15,7 @@ config () {
 source albans.conf
 summary
 #echo "The folder configured to backup is $DIRTOBACKUP press [ENTER] to continue without changes or insert a new folder"
-echo -e 'Insert a new configuration information or press [ENTER] to continue without changes\n'
-echo -e '\n\n'
+echo -e '\nInsert a new configuration information or press [ENTER] to continue without changes\n\n\n'
 
 read -p "Folder to backup is $DIRTOBACKUP define a new one or press ENTER to continue: " DIRTOBACKUPNEW
 if [ "$DIRTOBACKUPNEW" == "" ] ; then
@@ -61,11 +60,11 @@ menu
 showvars () {
 source albans.conf
 summary
-echo "The folder configured to backup is $DIRTOBACKUP"
-echo "Folder to store your backup $BACKUPDESTINATION"
-echo "Snapshot file: $SNAPSHOTFILE"
-echo "Name to be used by system as a reference: $REFERENCE"
-echo "Folder that will be used to restore everything: $DIRTORESTORE"
+echo -e "\nThe folder configured to backup is \e[1m$DIRTOBACKUP \e[21m"
+echo -e "Folder to store your backup \e[1m$BACKUPDESTINATION \e[21m"
+echo -e "Snapshot file: \e[1m$SNAPSHOTFILE \e[21m"
+echo -e "Name to be used by system as a reference: \e[1m$REFERENCE \e[21m"
+echo -e "Folder that will be used to restore everything: \e[1m$DIRTORESTORE \e[21m"
 echo -e '\n\n'
 read -p "Press [Enter] key to continue..."
 menu
@@ -144,26 +143,24 @@ exit 0
 
 summary () {
 clear
-echo "************************"
-echo "* Albans Backup System *"
-echo "************************"
+echo -e "\t\t\t\t\e[1m**********************************"
+echo -e "\t\t\t\t*\tAlbans Backup System\t *"
+echo -e "\t\t\t\t**********************************\e[0m"
 }
 
 menu () { 
 clear
 while :
 do
-echo "***************************"
-echo "* Albans Backup System    *"
-echo "***************************"
-echo "* [c] Config System       *"
-echo "* [s] Show configuration  *"
-echo "* [b] Backup 	        *"
-echo "* [r] Restore	        *"
-echo "* [u] Restore Until       *"
-echo "* [x] Exit 	        *"
-echo "***************************"
-echo -n "Select: "
+summary
+echo -e "\t\t\t\t* [c] Config System\t\t *"
+echo -e "\t\t\t\t* [s] Show configuration\t *"
+echo -e "\t\t\t\t* [b] Backup\t\t\t *"
+echo -e "\t\t\t\t* [r] Restore\t\t\t *"
+echo -e "\t\t\t\t* [u] Restore Until\t\t *"
+echo -e "\t\t\t\t* [x] Exit\t\t\t *"
+echo -e "\t\t\t\t**********************************"
+echo -n -e "\t\t\t\tSelect: "
 read yourch
 case $yourch in
 c) config ;;
