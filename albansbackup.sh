@@ -60,7 +60,7 @@ menu
 showvars () {
 source albans.conf
 summary
-echo -e "\nThe folder configured to backup is \e[1m$DIRTOBACKUP \e[21m"
+echo -e "\nFolder to backup: \e[1m$DIRTOBACKUP \e[21m"
 echo -e "Folder to store your backup \e[1m$BACKUPDESTINATION \e[21m"
 echo -e "Snapshot file: \e[1m$SNAPSHOTFILE \e[21m"
 echo -e "Name to be used by system as a reference: \e[1m$REFERENCE \e[21m"
