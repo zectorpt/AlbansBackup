@@ -147,9 +147,9 @@ exit 0
 
 summary () {
 clear
-echo -e "\t\t\t\t\e[1m**********************************"
-echo -e "\t\t\t\t*\tAlbans Backup System\t *"
-echo -e "\t\t\t\t**********************************\e[0m"
+echo -e "\e[1m**********************************"
+echo -e "*\tAlbans Backup System\t *"
+echo -e "**********************************\e[0m"
 }
 
 menu () { 
@@ -157,14 +157,14 @@ clear
 while :
 do
 summary
-echo -e "\t\t\t\t* [c] Config System\t\t *"
-echo -e "\t\t\t\t* [s] Show configuration\t *"
-echo -e "\t\t\t\t* [b] Backup\t\t\t *"
-echo -e "\t\t\t\t* [r] Restore\t\t\t *"
-echo -e "\t\t\t\t* [u] Restore Until\t\t *"
-echo -e "\t\t\t\t* [x] Exit\t\t\t *"
-echo -e "\t\t\t\t**********************************"
-echo -n -e "\t\t\t\tSelect: "
+echo -e "* [c] Config System\t\t *"
+echo -e "* [s] Show configuration\t *"
+echo -e "* [b] Backup\t\t\t *"
+echo -e "* [r] Restore\t\t\t *"
+echo -e "* [u] Restore Until\t\t *"
+echo -e "* [x] Exit\t\t\t *"
+echo -e "**********************************"
+echo -n -e "Select: "
 read yourch
 case $yourch in
 c) config ;;
