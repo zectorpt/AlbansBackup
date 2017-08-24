@@ -107,7 +107,7 @@ restoreuntil () {
 source albans.conf
 summary
 echo "All files will be restored to: $DIRTORESTORE"
-ls -ltr $BACKUPDESTINATION/back_$REFERENCE* | awk '{print $5,"\t\t",$6,"\t\t",$7,"\t",$8,"\t",$9}' > /tmp/albansbackup.tmp
+ls -ltrh $BACKUPDESTINATION/back_$REFERENCE* | awk '{print $5,"\t\t",$6,"\t\t",$7,"\t",$8,"\t",$9}' > /tmp/albansbackup.tmp
 cp /tmp/albansbackup.tmp /tmp/albansbackup.tmp.1
 echo -e 'Index\tSize\t\tTimestamp\t\t\tFilename' > /tmp/albansbackup.tmp
 awk '$0=((NR-1)?NR-0:"1")"      "$0' /tmp/albansbackup.tmp.1 >> /tmp/albansbackup.tmp
