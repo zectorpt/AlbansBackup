@@ -66,6 +66,21 @@ echo -e "Snapshot file: \e[1m$SNAPSHOTFILE \e[21m"
 echo -e "Name to be used by system as a reference: \e[1m$REFERENCE \e[21m"
 echo -e "Folder that will be used to restore everything: \e[1m$DIRTORESTORE \e[21m"
 echo -e '\n\n'
+
+#Validate if the folders declared exist
+if [ ! -d "$DIRTOBACKUP" ]; then
+        echo -e "Folder $DIRTOBACKUP does not exist\n"
+fi
+if [ ! -d "$BACKUPDESTINATION" ]; then
+        echo -e "Folder $BACKUPDESTINATION does not exist\n"
+fi
+if [ ! -f "$BACKUPDESTINATION/$SNAPSHOTFILE" ]; then
+        echo -e "File $BACKUPDESTINATION/$SNAPSHOTFILE does not exist\n"
+fi
+if [ ! -d "$DIRTORESTORE" ]; then
+        echo -e "Folder $DIRTORESTORE does not exist\n"
+fi
+
 read -p "Press [Enter] key to continue..."
 menu
 }
@@ -148,7 +163,7 @@ exit 0
 summary () {
 clear
 echo -e "\e[1m**********************************"
-echo -e "*\tAlbans Backup System\t *"
+echo -e "*\033[0;31m\tAlbans Backup System\t\033[0m *"
 echo -e "**********************************\e[0m"
 }
 
@@ -157,12 +172,14 @@ clear
 while :
 do
 summary
-echo -e "* [c] Config System\t\t *"
+echo -e "* [c] Config ABS   \t\t *"
 echo -e "* [s] Show configuration\t *"
 echo -e "* [b] Backup\t\t\t *"
 echo -e "* [r] Restore\t\t\t *"
 echo -e "* [u] Restore Until\t\t *"
 echo -e "* [x] Exit\t\t\t *"
+echo -e "*\t\t\t\t *"
+echo -e "* \t     Version $VERSION $DATE *"
 echo -e "**********************************"
 echo -n -e "Select: "
 read yourch

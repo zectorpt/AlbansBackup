@@ -6,7 +6,16 @@ With ABS you can backup a selected folder using a snapshot file, instead of crea
 
 
 Q: How to set my download folders and other configurations?
-A: All configurations are part of the albansbackup.sh file. You just need to set the values as you want. If you want to test it without changes. Perfect! Variables that need to be changed are DIRTOBACKUP, BACKUPDESTINATION and DIRTORESTORE
+A: All configurations are part of the albans.conf file. You just need to set the values as you want. If you want to test it without changes. Perfect! Variables that need to be changed are DIRTOBACKUP, BACKUPDESTINATION and DIRTORESTORE
+
+Q: I need to change code any code to reconfigure?
+A: No, you just need to select the option c in the menu of abs.sh
+
+Q: Why this name? Why Albans Backup System?
+A: Because I lived with my GF in this city, St. Albans, while I was working to Ocado Technology.
+
+Q: How to start it?
+A: ./abs.sh
 
 
 -----------------------------------------------------------------------------
