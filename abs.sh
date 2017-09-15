@@ -96,6 +96,16 @@ read -p "Press [Enter] key to continue..."
 menu
 }
 
+filipa () {
+source albans.conf
+summary
+echo "Filipa... O nome do meu amor! ;)"
+echo -e '\n\n'
+read -p "Press [Enter] key to continue..."
+menu
+}
+
+
 restore () {
 source albans.conf
 summary
@@ -189,6 +199,7 @@ s) showvars ;;
 b) backup ;;
 r) restore ;;
 u) restoreuntil ;;
+f) filipa ;;
 x) exit 0;;
 *) echo "Menu: ";
 echo "Press Enter to continue. . ." ; read ;;
