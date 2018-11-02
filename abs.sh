@@ -190,7 +190,7 @@ echo -e "* [r] Restore\t\t\t *"
 echo -e "* [u] Restore Until\t\t *"
 echo -e "* [x] Exit\t\t\t *"
 echo -e "*\t\t\t\t *"
-echo -e "* \t     Version $VERSION $DATE *"
+echo -e "* \t   Version $VERSION $DATE *"
 echo -e "**********************************"
 echo -n -e "Select: "
 read yourch
