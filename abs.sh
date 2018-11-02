@@ -60,6 +60,7 @@ menu
 showvars () {
 source albans.conf
 summary
+rm -f /tmp/albansbackup.tmp*
 echo -e "\n\e[21mFolder to backup: \e[1m$DIRTOBACKUP \e[21m"
 echo -e "\eFolder to store your backup \e[1m$BACKUPDESTINATION \e[21m"
 echo -e "\eSnapshot file: \e[1m$SNAPSHOTFILE \e[21m"
